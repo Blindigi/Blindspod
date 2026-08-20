@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindspodcast</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="app-container" role="main">
+        <div class="app-header">
+            <h1>Blindspodcast</h1>
+            <button id="editModeBtn" class="edit-mode-btn" type="button" aria-label="Instellingen" title="Instellingen" aria-pressed="false">⚙️</button>
+        </div>
+        
+        <!-- De Audiospeler - aria-live vertelt de schermlezer direct welke track start -->
+        <section class="player-section" aria-labelledby="player-heading">
+            <h2 id="player-heading" class="sr-only">Audiospeler</h2>
+            <div id="currentTrackTitle" aria-live="polite" aria-atomic="true">Geen podcast geselecteerd</div>
+            <audio id="audioPlayer" class="audio-source"></audio>
+            <div class="player-controls" aria-label="Nederlandse audiobediening">
+                <button id="playPauseBtn" class="player-btn" type="button" aria-label="Afspelen">Afspelen</button>
+                <label class="progress-control" for="progressBar">Voortgang
+                    <input id="progressBar" type="range" min="0" max="100" value="0" step="1" aria-label="Voortgang van de aflevering">
+                </label>
+                <span id="timeDisplay" aria-live="off">0:00 / 0:00</span>
+            </div>
+            <div class="skip-actions" aria-label="Vooruit- en terugspoelen">
+                <button id="rewindBtn" class="skip-btn" type="button" aria-label="10 seconden terugspoelen">↶ 10 sec terug</button>
+                <button id="forwardBtn" class="skip-btn" type="button" aria-label="10 seconden vooruitspoelen">10 sec vooruit ↷</button>
+            </div>
+            <div class="bookmark-actions">
+                <button id="bookmarkBtn" class="blue-btn" aria-label="Maak bladwijzer op dit huidige tijdstip">Maak bladwijzer</button>
+            </div>
+        </section>
+
+        <!-- Podcast Lijst -->
+        <section class="section" aria-labelledby="library-heading">
+            <h2 id="library-heading">Mijn Afleveringen</h2>
+            <ul id="podcastList" aria-label="Beschikbare podcast afleveringen"></ul>
+        </section>
+
+        <!-- Bladwijzers Lijst -->
+        <section class="section" aria-labelledby="bookmarks-heading">
+            <h2 id="bookmarks-heading">Mijn Bladwijzers</h2>
+            <ul id="bookmarkList" aria-label="Lijst met gemaakte bladwijzers"></ul>
+        </section>
+
+        <!-- Podcast Toevoegen -->
+        <section id="addPodcastSection" class="section" aria-labelledby="add-heading" hidden>
+            <h2 id="add-heading">Podcast Toevoegen</h2>
+            <label for="podcastTitleInput">Naam van de aflevering</label>
+            <input type="text" id="podcastTitleInput" placeholder="Bijv. Aflevering 1...">
+            <label for="podcastUrlInput">Link naar audiobestand (.mp3)</label>
+            <input type="text" id="podcastUrlInput" placeholder="https://example.com...">
+            <button id="addPodcastBtn" class="green-btn" type="button">Voeg toe aan lijst</button>
+            <h2>Bladwijzers overzetten</h2>
+            <button id="exportBookmarksBtn" class="blue-btn" type="button">Exporteer bladwijzers</button>
+            <label class="import-bookmarks-label" for="importBookmarksInput">Importeer bladwijzers uit een JSON-bestand</label>
+            <input id="importBookmarksInput" type="file" accept="application/json,.json">
+        </section>
+    </main>
+</body>
+</html>
